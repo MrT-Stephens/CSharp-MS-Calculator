@@ -1,14 +1,7 @@
+using System.Numerics;
+
 namespace C__MS_Calculator
 {
-    internal enum Operation_Enum
-    {
-        None = 0,
-        Add = 1,
-        Subtract = 2,
-        Multiply = 3,
-        Divide = 4
-    }
-
     public partial class CalculatorForm : Form
     {
         private double prevNumber = 0;
@@ -293,6 +286,106 @@ namespace C__MS_Calculator
             catch (Exception)
             {
                 CalcOutputTextBox.Text = "Error";
+            }
+        }
+
+        internal enum Operation_Enum
+        {
+            None = 0,
+            Add = 1,
+            Subtract = 2,
+            Multiply = 3,
+            Divide = 4
+        }
+
+        internal class Calculator
+        {
+            private double memoryNumber;
+            private List<KeyValuePair<Operation_Enum, double>> prevValues;
+
+            public Calculator()
+            {
+                memoryNumber = 0;
+                prevValues = new List<KeyValuePair<Operation_Enum, double>>();
+            }
+
+            public void AddValue(Operation_Enum operation, double value)
+            {
+                prevValues.Add(new KeyValuePair<Operation_Enum, double>(operation, value));
+            }
+
+            public int ValueCount()
+            {
+                return prevValues.Count;
+            }
+
+            public string Calculate()
+            {
+                double result = prevValues[0].Value;
+
+                try
+                {
+                    for (int i = 1; i < prevValues.Count; ++i)
+                    {
+                        switch (prevValues[i].Key)
+                        {
+                            case Operation_Enum.Add:
+                                result += prevValues[i].Value;
+                                break;
+                            case Operation_Enum.Subtract:
+                                result -= prevValues[i].Value;
+                                break;
+                            case Operation_Enum.Multiply:
+                                result *= prevValues[i].Value;
+                                break;
+                            case Operation_Enum.Divide:
+                                result /= prevValues[i].Value;
+                                break;
+                            case Operation_Enum.None:
+                            default:
+                                break;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    return "Error";
+                }
+
+                return result.ToString();
+            }
+
+            public double memory
+            {
+                get
+                {
+                    return memoryNumber;
+                }
+                set
+                {
+                    memoryNumber = value;
+                }
+            }
+
+            public void MemoryAdd(double value)
+            {
+                memoryNumber += value;
+            }
+
+            public void MemorySubtract(double value)
+            {
+                memoryNumber -= value;
+            }
+
+            public void Clear()
+            {
+                memoryNumber = 0;
+                prevValues.Clear();
+            }
+
+            public void ClearMemory()
+            {
+                memoryNumber = 0;
             }
         }
     }
