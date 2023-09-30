@@ -1,41 +1,43 @@
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace C__MS_Calculator
 {
     public partial class CalculatorForm : Form
     {
-        private double prevNumber = 0;
-        private double memoryNumber = 0;
-        private Operation_Enum operation = Operation_Enum.None;
+        private bool equalsPressed = false;
+        private bool specialBtnPressed = false;
+        private Calculator calculator;
 
         public CalculatorForm()
         {
             InitializeComponent();
+
+            calculator = new Calculator();
         }
 
         private void MC_Button_Click(object sender, EventArgs e)
         {
-            memoryNumber = 0;
+            calculator.ClearMemory();
         }
 
         private void MR_Button_Click(object sender, EventArgs e)
         {
-            CalcOutputTextBox.Text = memoryNumber.ToString();
+            CalcOutputTextBox.Text = calculator.memory.ToString();
         }
 
         private void MS_Button_Click(object sender, EventArgs e)
         {
-            memoryNumber = double.Parse(CalcOutputTextBox.Text);
+            calculator.memory = double.Parse(CalcOutputTextBox.Text);
         }
 
         private void MPlus_Button_Click(object sender, EventArgs e)
         {
-            memoryNumber += double.Parse(CalcOutputTextBox.Text);
+            calculator.memory += double.Parse(CalcOutputTextBox.Text);
         }
 
         private void MMinus_Button_Click(object sender, EventArgs e)
         {
-            memoryNumber -= double.Parse(CalcOutputTextBox.Text);
+            calculator.memory -= double.Parse(CalcOutputTextBox.Text);
         }
 
         private void Backspace_Button_Click(object sender, EventArgs e)
@@ -57,10 +59,14 @@ namespace C__MS_Calculator
 
         private void C_Button_Click(object sender, EventArgs e)
         {
-            CalcAnswerTextBox.Text = "";
+            calculator.ClearValues();
+            calculator.ClearMemory();
+
             CalcOutputTextBox.Text = "0";
-            prevNumber = 0;
-            operation = Operation_Enum.None;
+            CalcAnswerTextBox.Text = "";
+
+            equalsPressed = false;
+            specialBtnPressed = false;
         }
 
         private void ChangeSign_Button_Click(object sender, EventArgs e)
@@ -70,6 +76,10 @@ namespace C__MS_Calculator
 
         private void Sqrt_Button_Click(object sender, EventArgs e)
         {
+            specialBtnPressed = true;
+
+            CalcAnswerTextBox.Text += "(√" + CalcOutputTextBox.Text + ") ";
+
             CalcOutputTextBox.Text = Math.Sqrt(double.Parse(CalcOutputTextBox.Text)).ToString();
         }
 
@@ -195,43 +205,90 @@ namespace C__MS_Calculator
 
         private void Divide_Button_Click(object sender, EventArgs e)
         {
-            operation = Operation_Enum.Divide;
+            if (equalsPressed)
+            {
+                CalcAnswerTextBox.Text = "";
+                equalsPressed = false;
+                calculator.ClearValues();
+            }
 
-            prevNumber = double.Parse(CalcOutputTextBox.Text);
+            calculator.AddValue(Operation_Enum.Divide, double.Parse(CalcOutputTextBox.Text));
 
-            CalcAnswerTextBox.Text = CalcOutputTextBox.Text += " � ";
+            if (specialBtnPressed)
+            {
+                CalcAnswerTextBox.Text += " ÷ ";
+                specialBtnPressed = false;
+            }
+            else
+            {
+                CalcAnswerTextBox.Text += CalcOutputTextBox.Text += " ÷ ";
+            }
 
             CalcOutputTextBox.Text = "0";
         }
 
         private void Percentage_Button_Click(object sender, EventArgs e)
         {
+            specialBtnPressed = true;
+
+            CalcAnswerTextBox.Text += "(" + CalcOutputTextBox.Text + " / 100) ";
+
             CalcOutputTextBox.Text = (double.Parse(CalcOutputTextBox.Text) / 100).ToString();
         }
 
         private void Multiply_Button_Click(object sender, EventArgs e)
         {
-            operation = Operation_Enum.Multiply;
+            if (equalsPressed)
+            {
+                CalcAnswerTextBox.Text = "";
+                equalsPressed = false;
+                calculator.ClearValues();
+            }
 
-            prevNumber = double.Parse(CalcOutputTextBox.Text);
+            calculator.AddValue(Operation_Enum.Multiply, double.Parse(CalcOutputTextBox.Text));
 
-            CalcAnswerTextBox.Text = CalcOutputTextBox.Text += " � ";
+            if (specialBtnPressed)
+            {
+                CalcAnswerTextBox.Text += " × ";
+                specialBtnPressed = false;
+            }
+            else
+            {
+                CalcAnswerTextBox.Text += CalcOutputTextBox.Text += " × ";
+            }
 
             CalcOutputTextBox.Text = "0";
         }
 
         private void Reciprocal_Button_Click(object sender, EventArgs e)
         {
+            specialBtnPressed = true;
+
+            CalcAnswerTextBox.Text += "(1 / " + CalcOutputTextBox.Text + ") ";
+
             CalcOutputTextBox.Text = (1 / double.Parse(CalcOutputTextBox.Text)).ToString();
         }
 
         private void Minus_Button_Click(object sender, EventArgs e)
         {
-            operation = Operation_Enum.Subtract;
+            if (equalsPressed)
+            {
+                CalcAnswerTextBox.Text = "";
+                equalsPressed = false;
+                calculator.ClearValues();
+            }
 
-            prevNumber = double.Parse(CalcOutputTextBox.Text);
+            calculator.AddValue(Operation_Enum.Subtract, double.Parse(CalcOutputTextBox.Text));
 
-            CalcAnswerTextBox.Text = CalcOutputTextBox.Text += " - ";
+            if (specialBtnPressed)
+            {
+                CalcAnswerTextBox.Text += " - ";
+                specialBtnPressed = false;
+            }
+            else
+            {
+                CalcAnswerTextBox.Text += CalcOutputTextBox.Text += " - ";
+            }
 
             CalcOutputTextBox.Text = "0";
         }
@@ -246,46 +303,39 @@ namespace C__MS_Calculator
 
         private void Add_Button_Click(object sender, EventArgs e)
         {
-            operation = Operation_Enum.Add;
+            if (equalsPressed)
+            {
+                CalcAnswerTextBox.Text = "";
+                equalsPressed = false;
+                calculator.ClearValues();
+            }
 
-            prevNumber = double.Parse(CalcOutputTextBox.Text);
+            calculator.AddValue(Operation_Enum.Add, double.Parse(CalcOutputTextBox.Text));
 
-            CalcAnswerTextBox.Text = CalcOutputTextBox.Text += " + ";
+            if (specialBtnPressed)
+            {
+                CalcAnswerTextBox.Text += " + ";
+                specialBtnPressed = false;
+            }
+            else
+            {
+                CalcAnswerTextBox.Text += CalcOutputTextBox.Text += " + ";
+            }
 
             CalcOutputTextBox.Text = "0";
         }
 
         private void Equals_Button_Click(object sender, EventArgs e)
         {
-            if (operation != Operation_Enum.None)
+            if (calculator.ValueCount() > 0)
             {
-                CalcAnswerTextBox.Text += CalcOutputTextBox.Text + " =";
-            }
+                equalsPressed = true;
 
-            try
-            {
-                switch (operation)
-                {
-                    case Operation_Enum.Add:
-                        CalcOutputTextBox.Text = (prevNumber + double.Parse(CalcOutputTextBox.Text)).ToString();
-                        break;
-                    case Operation_Enum.Subtract:
-                        CalcOutputTextBox.Text = (prevNumber - double.Parse(CalcOutputTextBox.Text)).ToString();
-                        break;
-                    case Operation_Enum.Multiply:
-                        CalcOutputTextBox.Text = (prevNumber * double.Parse(CalcOutputTextBox.Text)).ToString();
-                        break;
-                    case Operation_Enum.Divide:
-                        CalcOutputTextBox.Text = (prevNumber / double.Parse(CalcOutputTextBox.Text)).ToString();
-                        break;
-                    case Operation_Enum.None:
-                    default:
-                        break;
-                }
-            }
-            catch (Exception)
-            {
-                CalcOutputTextBox.Text = "Error";
+                calculator.AddValue(Operation_Enum.None, double.Parse(CalcOutputTextBox.Text));
+
+                CalcAnswerTextBox.Text += CalcOutputTextBox.Text + " = ";
+
+                CalcOutputTextBox.Text = calculator.Calculate();
             }
         }
 
@@ -321,35 +371,37 @@ namespace C__MS_Calculator
 
             public string Calculate()
             {
-                double result = prevValues[0].Value;
+                double result = 0;
 
                 try
                 {
-                    for (int i = 1; i < prevValues.Count; ++i)
+                    for (int i = 0; i < prevValues.Count; ++i)
                     {
-                        switch (prevValues[i].Key)
+                        if (i == 0)
                         {
-                            case Operation_Enum.Add:
-                                result += prevValues[i].Value;
-                                break;
-                            case Operation_Enum.Subtract:
-                                result -= prevValues[i].Value;
-                                break;
-                            case Operation_Enum.Multiply:
-                                result *= prevValues[i].Value;
-                                break;
-                            case Operation_Enum.Divide:
-                                result /= prevValues[i].Value;
-                                break;
-                            case Operation_Enum.None:
-                            default:
-                                break;
+                            result = prevValues[0].Value;
+                        }
+                        else if (prevValues[i - 1].Key == Operation_Enum.Add)
+                        {
+                            result += prevValues[i].Value;
+                        }
+                        else if (prevValues[i - 1].Key == Operation_Enum.Subtract)
+                        {
+                            result -= prevValues[i].Value;
+                        }
+                        else if (prevValues[i - 1].Key == Operation_Enum.Multiply)
+                        {
+                            result *= prevValues[i].Value;
+                        }
+                        else if (prevValues[i - 1].Key == Operation_Enum.Divide)
+                        {
+                            result /= prevValues[i].Value;
                         }
                     }
                 }
                 catch (Exception)
                 {
-                    return "Error";
+                    return "Error while calculating";
                 }
 
                 return result.ToString();
@@ -367,19 +419,8 @@ namespace C__MS_Calculator
                 }
             }
 
-            public void MemoryAdd(double value)
+            public void ClearValues()
             {
-                memoryNumber += value;
-            }
-
-            public void MemorySubtract(double value)
-            {
-                memoryNumber -= value;
-            }
-
-            public void Clear()
-            {
-                memoryNumber = 0;
                 prevValues.Clear();
             }
 
