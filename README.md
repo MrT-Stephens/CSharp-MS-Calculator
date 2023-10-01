@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A desktop application which converts CSV (Comma Separated Values) to many other types!</h4>
+<h4 align="center">A simple C# calculator made as a first C# project!</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
