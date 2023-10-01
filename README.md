@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A simple C# calculator made as a first C# project!</h4>
+<h4 align="center">A simple C# calculator based on the microsoft calculator. Made as a first C# project!</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
