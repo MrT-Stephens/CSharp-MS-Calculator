@@ -14,7 +14,8 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application.png" alt="drawing" align="center"/>
+  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application.png" alt="drawing" align="left"/>
+  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application-2.png" alt="drawing" align="right"/>
 </p>
 
 ## Key Features
