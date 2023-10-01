@@ -333,7 +333,15 @@ namespace C__MS_Calculator
 
                 calculator.AddValue(Operation_Enum.None, double.Parse(CalcOutputTextBox.Text));
 
-                CalcAnswerTextBox.Text += CalcOutputTextBox.Text + " = ";
+                if (specialBtnPressed)
+                {
+                    CalcAnswerTextBox.Text += " = ";
+                    specialBtnPressed = false;
+                }
+                else
+                {
+                    CalcAnswerTextBox.Text += CalcOutputTextBox.Text + " = ";
+                }
 
                 CalcOutputTextBox.Text = calculator.Calculate();
             }
