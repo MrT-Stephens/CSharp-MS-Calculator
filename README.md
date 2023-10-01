@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">A desktop application which converts CSV (Comma Separated Values) to many other types!</h4>
+<h4 align="center">A simple C# calculator based on the microsoft calculator. Made as a first C# project!</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application.png" alt="drawing" align="left"/>
-  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application-2.png" alt="drawing" align="right"/>
+  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application-1.png" alt="drawing" align="center"/>
+  <img src="https://github.com/MrT-Stephens/CSharp-MS-Calculator/blob/master/Images/calculator-application-2.png" alt="drawing" align="center"/>
 </p>
 
 ## Key Features
