@@ -78,128 +78,22 @@ namespace C__MS_Calculator
         {
             specialBtnPressed = true;
 
-            CalcAnswerTextBox.Text += "(√" + CalcOutputTextBox.Text + ") ";
+            CalcAnswerTextBox.Text += "(√" + CalcOutputTextBox.Text + ")";
 
             CalcOutputTextBox.Text = Math.Sqrt(double.Parse(CalcOutputTextBox.Text)).ToString();
         }
 
-        private void Seven_Button_Click(object sender, EventArgs e)
+        private void Digits_Buttons_Click(object sender, EventArgs e)
         {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "7";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "7";
-            }
-        }
+            string digit = ((Button)sender).Text;
 
-        private void Eight_Button_Click(object sender, EventArgs e)
-        {
             if (CalcOutputTextBox.Text == "0")
             {
-                CalcOutputTextBox.Text = "8";
+                CalcOutputTextBox.Text = digit;
             }
             else
             {
-                CalcOutputTextBox.Text += "8";
-            }
-        }
-
-        private void Nine_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "9";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "9";
-            }
-        }
-
-        private void Four_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "4";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "4";
-            }
-        }
-
-        private void Five_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "5";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "5";
-            }
-        }
-
-        private void Six_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "6";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "6";
-            }
-        }
-
-        private void One_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "1";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "1";
-            }
-        }
-
-        private void Two_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "2";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "2";
-            }
-        }
-
-        private void Three_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "3";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "3";
-            }
-        }
-
-        private void Zero_Button_Click(object sender, EventArgs e)
-        {
-            if (CalcOutputTextBox.Text == "0")
-            {
-                CalcOutputTextBox.Text = "0";
-            }
-            else
-            {
-                CalcOutputTextBox.Text += "0";
+                CalcOutputTextBox.Text += digit;
             }
         }
 
@@ -231,7 +125,7 @@ namespace C__MS_Calculator
         {
             specialBtnPressed = true;
 
-            CalcAnswerTextBox.Text += "(" + CalcOutputTextBox.Text + " / 100) ";
+            CalcAnswerTextBox.Text += "(" + CalcOutputTextBox.Text + " / 100)";
 
             CalcOutputTextBox.Text = (double.Parse(CalcOutputTextBox.Text) / 100).ToString();
         }
@@ -264,7 +158,7 @@ namespace C__MS_Calculator
         {
             specialBtnPressed = true;
 
-            CalcAnswerTextBox.Text += "(1 / " + CalcOutputTextBox.Text + ") ";
+            CalcAnswerTextBox.Text += "(1 / " + CalcOutputTextBox.Text + ")";
 
             CalcOutputTextBox.Text = (1 / double.Parse(CalcOutputTextBox.Text)).ToString();
         }
@@ -327,7 +221,7 @@ namespace C__MS_Calculator
 
         private void Equals_Button_Click(object sender, EventArgs e)
         {
-            if (calculator.ValueCount() > 0)
+            if (calculator.ValueCount() > 0 && !equalsPressed)
             {
                 equalsPressed = true;
 

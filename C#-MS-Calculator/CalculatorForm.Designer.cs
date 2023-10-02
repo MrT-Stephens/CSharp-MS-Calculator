@@ -119,7 +119,7 @@
             Nine_Button.TabIndex = 12;
             Nine_Button.Text = "9";
             Nine_Button.UseVisualStyleBackColor = true;
-            Nine_Button.Click += Nine_Button_Click;
+            Nine_Button.Click += Digits_Buttons_Click;
             // 
             // Eight_Button
             // 
@@ -134,7 +134,7 @@
             Eight_Button.TabIndex = 11;
             Eight_Button.Text = "8";
             Eight_Button.UseVisualStyleBackColor = true;
-            Eight_Button.Click += Eight_Button_Click;
+            Eight_Button.Click += Digits_Buttons_Click;
             // 
             // Seven_Button
             // 
@@ -149,7 +149,7 @@
             Seven_Button.TabIndex = 10;
             Seven_Button.Text = "7";
             Seven_Button.UseVisualStyleBackColor = true;
-            Seven_Button.Click += Seven_Button_Click;
+            Seven_Button.Click += Digits_Buttons_Click;
             // 
             // Sqrt_Button
             // 
@@ -365,7 +365,7 @@
             Four_Button.TabIndex = 15;
             Four_Button.Text = "4";
             Four_Button.UseVisualStyleBackColor = true;
-            Four_Button.Click += Four_Button_Click;
+            Four_Button.Click += Digits_Buttons_Click;
             // 
             // Five_Button
             // 
@@ -380,7 +380,7 @@
             Five_Button.TabIndex = 16;
             Five_Button.Text = "5";
             Five_Button.UseVisualStyleBackColor = true;
-            Five_Button.Click += Five_Button_Click;
+            Five_Button.Click += Digits_Buttons_Click;
             // 
             // Six_Button
             // 
@@ -395,7 +395,7 @@
             Six_Button.TabIndex = 17;
             Six_Button.Text = "6";
             Six_Button.UseVisualStyleBackColor = true;
-            Six_Button.Click += Six_Button_Click;
+            Six_Button.Click += Digits_Buttons_Click;
             // 
             // Multiply_Button
             // 
@@ -440,7 +440,7 @@
             One_Button.TabIndex = 20;
             One_Button.Text = "1";
             One_Button.UseVisualStyleBackColor = true;
-            One_Button.Click += One_Button_Click;
+            One_Button.Click += Digits_Buttons_Click;
             // 
             // Two_Button
             // 
@@ -455,7 +455,7 @@
             Two_Button.TabIndex = 21;
             Two_Button.Text = "2";
             Two_Button.UseVisualStyleBackColor = true;
-            Two_Button.Click += Two_Button_Click;
+            Two_Button.Click += Digits_Buttons_Click;
             // 
             // Three_Button
             // 
@@ -470,7 +470,7 @@
             Three_Button.TabIndex = 22;
             Three_Button.Text = "3";
             Three_Button.UseVisualStyleBackColor = true;
-            Three_Button.Click += Three_Button_Click;
+            Three_Button.Click += Digits_Buttons_Click;
             // 
             // Minus_Button
             // 
@@ -517,7 +517,7 @@
             Zero_Button.TabIndex = 25;
             Zero_Button.Text = "0";
             Zero_Button.UseVisualStyleBackColor = true;
-            Zero_Button.Click += Zero_Button_Click;
+            Zero_Button.Click += Digits_Buttons_Click;
             // 
             // Decimal_Button
             // 
